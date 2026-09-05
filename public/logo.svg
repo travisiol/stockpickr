@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="STOCKPICKR">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2a2e"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="url(#tile)"/>
+  <!-- the run-up: three legs of a rising line -->
+  <path d="M14 44 L25 34 L34 40 L48 21" fill="none" stroke="#f2f2ef" stroke-width="4.2"
+        stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+  <!-- the pick: the last node, ringed, is the call -->
+  <circle cx="48" cy="21" r="8.5" fill="none" stroke="#c08d34" stroke-width="3.4"/>
+  <circle cx="48" cy="21" r="3" fill="#c08d34"/>
+</svg>

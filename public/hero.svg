@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 120 1600 780" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Layered ridges under a low sun">
+  <defs>
+    <!-- sky: pale, high-key, so the wordmark and headline stay legible over it -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef0ea"/>
+      <stop offset="46%" stop-color="#e6e9e0"/>
+      <stop offset="100%" stop-color="#dfe3d8"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.62" cy="0.30" r="0.46">
+      <stop offset="0%" stop-color="#fff9e8" stop-opacity=".95"/>
+      <stop offset="55%" stop-color="#f6f2e2" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#f6f2e2" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- each ridge sits a step darker and a step greener than the one behind it -->
+    <linearGradient id="r1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c2cbb8"/><stop offset="100%" stop-color="#b4c0a9"/>
+    </linearGradient>
+    <linearGradient id="r2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a3b294"/><stop offset="100%" stop-color="#93a483"/>
+    </linearGradient>
+    <linearGradient id="r3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#82976f"/><stop offset="100%" stop-color="#6e8760"/>
+    </linearGradient>
+    <linearGradient id="r4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5d7853"/><stop offset="100%" stop-color="#476343"/>
+    </linearGradient>
+    <linearGradient id="r5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b5639"/><stop offset="100%" stop-color="#2a442d"/>
+    </linearGradient>
+
+    <!-- fog collects in the valleys, which is what sells the distance -->
+    <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef1e8" stop-opacity=".82"/>
+      <stop offset="100%" stop-color="#f2f4ee" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- film grain, kept very low so it reads as paper rather than noise -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0" result="g"/>
+      <feComponentTransfer in="g" result="g2">
+        <feFuncA type="linear" slope="0.06"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="g2" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#grain)">
+    <rect width="1600" height="900" fill="url(#sky)"/>
+    <rect width="1600" height="900" fill="url(#sun)"/>
+
+    <!-- ridge 1, furthest -->
+    <path fill="url(#r1)" d="M0 452 C 150 424, 268 470, 402 452 C 546 432, 640 386, 792 400 C 934 413, 1010 458, 1150 446 C 1288 434, 1420 398, 1600 418 L1600 900 L0 900 Z"/>
+    <rect y="430" width="1600" height="150" fill="url(#fog)"/>
+
+    <!-- ridge 2 -->
+    <path fill="url(#r2)" d="M0 540 C 120 520, 232 552, 356 536 C 500 517, 596 470, 742 486 C 878 500, 968 546, 1104 536 C 1252 525, 1400 486, 1600 508 L1600 900 L0 900 Z"/>
+    <rect y="520" width="1600" height="150" fill="url(#fog)" opacity=".8"/>
+
+    <!-- ridge 3 -->
+    <path fill="url(#r3)" d="M0 632 C 140 614, 250 646, 388 628 C 528 610, 622 566, 768 582 C 902 596, 992 640, 1126 630 C 1272 619, 1418 582, 1600 604 L1600 900 L0 900 Z"/>
+    <rect y="612" width="1600" height="140" fill="url(#fog)" opacity=".62"/>
+
+    <!-- ridge 4 -->
+    <path fill="url(#r4)" d="M0 730 C 132 712, 244 744, 380 726 C 520 708, 616 668, 760 684 C 896 698, 984 740, 1122 730 C 1268 719, 1416 684, 1600 706 L1600 900 L0 900 Z"/>
+    <rect y="712" width="1600" height="120" fill="url(#fog)" opacity=".42"/>
+
+    <!-- ridge 5, nearest, with the treeline reading as texture rather than shapes -->
+    <path fill="url(#r5)" d="M0 826 C 140 810, 252 840, 392 824 C 534 808, 628 774, 776 788 C 912 800, 998 838, 1136 828 C 1280 818, 1424 786, 1600 806 L1600 900 L0 900 Z"/>
+    <g fill="#32493a" opacity=".55">
+      <path d="M96 828 l7 -22 7 22z M128 822 l6 -19 6 19z M300 826 l8 -24 8 24z M338 830 l6 -18 6 18z M470 806 l7 -21 7 21z M508 802 l6 -17 6 17z M700 790 l8 -23 8 23z M742 794 l6 -18 6 18z M960 822 l7 -21 7 21z M1000 826 l6 -18 6 18z M1200 822 l8 -23 8 23z M1244 818 l6 -18 6 18z M1420 796 l7 -21 7 21z M1462 800 l6 -18 6 18z"/>
+    </g>
+
+    <!-- the trail: a single pale line drawing the eye up through the hills -->
+    <path d="M770 900 C 800 848, 830 830, 872 812 C 918 792, 946 780, 970 758" fill="none" stroke="#e9ecdf" stroke-width="16" stroke-linecap="round" opacity=".5"/>
+    <path d="M770 900 C 800 848, 830 830, 872 812 C 918 792, 946 780, 970 758" fill="none" stroke="#f4f6ec" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+  </g>
+</svg>

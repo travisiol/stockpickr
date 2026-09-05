@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="">
+  <defs>
+    <!-- a saturated base so hue-rotate() gives every picker a distinct colour -->
+    <linearGradient id="a" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#5cd0ff"/>
+      <stop offset="52%" stop-color="#2f7ef0"/>
+      <stop offset="100%" stop-color="#1b3fb8"/>
+    </linearGradient>
+    <radialGradient id="s" cx="0.34" cy="0.26" r="0.62">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#a)"/>
+  <circle cx="32" cy="32" r="32" fill="url(#s)"/>
+  <path d="M18 40 L27 32 L34 37 L46 24" fill="none" stroke="#ffffff" stroke-opacity=".62"
+        stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
