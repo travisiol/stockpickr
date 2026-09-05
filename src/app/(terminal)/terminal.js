@@ -814,9 +814,9 @@ function epochEndMs(){ return (state.epochN+1)*DAY; }
    on-chain balance of that wallet: deposit claimed fees to it and the number moves.
    Leave `address` empty to keep the simulated pool. */
 const TREASURY = {
-  address:"0xfcb7d6E48E3718e235035fcE48D0cB1db94D09F0",   // Pick Rewards treasury
+  address:site.treasury,                        // Picker Rewards treasury, empty until there is one
   token:"",                                     // PASTE your coin's contract address. empty = native ETH
-  rpc:"https://rpc.mainnet.chain.robinhood.com",// Robinhood Chain mainnet, chain id 4663
+  rpc:"/api/rpc",                               // relayed: the public RPC sends a malformed CORS header
   explorer:"https://robinhoodchain.blockscout.com/address/",
   decimals:null,                                // read from the contract when left null
   symbol:"",                                    // read from the contract when left empty

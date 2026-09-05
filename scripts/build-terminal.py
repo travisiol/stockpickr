@@ -1,10 +1,10 @@
 """Record of how src/app/(terminal)/terminal.js was produced.
 
 The terminal began life as one standalone HTML page. This script is the
-transformation that turned it into a module: it takes the page's <style>,
-its body markup and its <script> (extracted to out/terminal.css,
-out/shell.html and out/terminal-body.js), applies every deliberate change
-listed below, and writes out/terminal.js.
+transformation that turned it into a module: it takes the page's <style>, its
+body markup and its <script> (extracted to out/terminal.css, out/shell.html
+and out/terminal-body.js), applies every deliberate change listed below, and
+writes out/terminal.js.
 
 It is kept as documentation rather than as a build step: it needs those
 extracted inputs, which are not in the repo. Every `assert` below is a claim
@@ -13,9 +13,13 @@ about the source that failed loudly if the source was not what was expected.
 What it changes, beyond the rename:
   - paper mode branches in trade, sellPos, fetchWalletBalance, syncHoldings
   - the header balance chip and deposit modal, which had no paper wording
-  - two addresses shortened with a literal "&" where the rest of the file
-    used an ellipsis
-  - copy that still said "call" where the product now says "pick"
+  - a hardcoded treasury wallet, which now comes from site.ts and ships empty
+  - the chain RPC, relayed through /api/rpc because the public endpoint sends
+    a doubled Access-Control-Allow-Origin header that browsers reject
+  - two addresses shortened with a literal "&" where the rest of the file used
+    an ellipsis
+  - copy that still said "call" where the product now says "pick", and
+    sign-in prompts that assumed a wallet
   - localStorage keys still carrying the old prefix
   - viem imported from the project instead of a CDN
   - the boot block's timers handed to TIMERS so the effect can stop them
@@ -122,6 +126,23 @@ for a, b in COPY:
 for a, b in [('"sc_pools"', '"sp_pools"'), ('"sc_pk"', '"sp_pk"')]:
     assert body.count(a) == 2, (a, body.count(a))
     body = body.replace(a, b)
+
+# The port carried the original's own treasury wallet hardcoded. That address
+# is not ours to read a balance from or to present as this product's treasury,
+# so it comes from site.ts and ships empty.
+old_treasury = 'address:"0xfcb7d6E48E3718e235035fcE48D0cB1db94D09F0",   // Pick Rewards treasury'
+assert body.count(old_treasury) == 1
+body = body.replace(
+    old_treasury,
+    'address:site.treasury,                        // Picker Rewards treasury, empty until there is one')
+
+# Robinhood Chain's public RPC sends "Access-Control-Allow-Origin: *,*", which
+# every browser rejects, so every chain read is relayed through our own route.
+old_rpc = 'rpc:"https://rpc.mainnet.chain.robinhood.com",// Robinhood Chain mainnet, chain id 4663'
+assert body.count(old_rpc) == 1
+body = body.replace(
+    old_rpc,
+    'rpc:"/api/rpc",                               // relayed: the public RPC sends a malformed CORS header')
 
 # viem comes from the project rather than from a CDN
 old = 'await import("https://esm.sh/viem@2.56.0")'

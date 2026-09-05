@@ -100,8 +100,10 @@ function useTreasury() {
   useEffect(() => {
     if (!site.treasury) return;
     let live = true;
+    /* through our own relay, not site.rpc directly: the public RPC answers
+       with a doubled Access-Control-Allow-Origin that browsers reject */
     const load = () =>
-      fetch(site.rpc, {
+      fetch("/api/rpc", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
